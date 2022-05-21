@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Health Expense</title>
+    <link
+      href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300"
+      rel="stylesheet"
+      type="text/css"
+    />
+  </head>
+  <body style="background: rgb(252, 250, 250)">
+    <div class="login">
+      <h1 style="text-align: center">Flight taxitime predictor</h1>
+
+      <form action="{{ url_for('predict')}}" method="post">
+        <label for="time" colo>time: </label>
+        <input type="text" name="time" placeholder="time" required="required" />
+        <br />
+        <br />
+        <label for="count">count: </label>
+        <input
+          type="text"
+          name="count"
+          placeholder="count"
+          required="required"
+        />
+        <br />
+        <br />
+        <label for="aircraft_type">Aircraft type: </label>
+
+        <select
+          id="aircraft_type"
+          name="aircraft_type"
+          placeholder="aircraft_type"
+          required="required"
+        >
+          {% for i in aircraft_type %}
+          <li>
+            <option value="{{i}}">{{i}}</option>
+          </li>
+          {% endfor %}
+        </select>
+        <br />
+        <br />
+        <label for="bay_number">Bay Number: </label>
+        <select
+          id="bay_number"
+          name="bay_number"
+          placeholder="bay_number"
+          required="bay_number"
+        >
+          {% for i in bay_number %}
+          <li>
+            <option value="{{i}}" +{{i}}>{{i}}</option>
+          </li>
+          {% endfor %}
+        </select>
+        <br />
+        <br />
+        <button type="submit" class="btn btn-primary btn-block btn-large">
+          Predict Flight Path
+        </button>
+      </form>
+      <br />
+      <br />
+      <h2>{{ prediction_text }}</h2>
+    </div>
+  </body>
+</html>
